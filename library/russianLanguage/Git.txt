@@ -1,0 +1,599 @@
+PART — 1.1 Введение, 2.1 Основы
+
+
+#<big>1.1 Введение – <a href="https://www.youtube.com/watch?v=W4hoc24K93E&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=2&t=6s">Что такое Git?</a></big>
+
+
+#<big>2.1 Основы – <a href="https://www.youtube.com/watch?v=hWiqh6YUUS8&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=3&t=310s">Конфигурация</a></big>
+
+git init — создать директорию «.git» c новым git-репозиторием в текущем каталоге		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config user.name 'Ivan Iv' — установить имя пользователя Git 'Ivan Iv' на локальном уровне для репозитория в файле «∕.git∕config» (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --local user.name 'Ivan Iv' — установить имя пользователя Git 'Ivan Iv' на локальном уровне для репозитория в файле «∕.git∕config» (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --global user.email ivan@mail.by — установить адрес электронной почты пользователя Git 'ivan@mail.by' на уровне профиля в операционной системе в файле «~∕.gitconfig»		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --system user.name 'Ivan Iv' — установить имя пользователя Git 'Ivan Iv' на уровне всей операционной системы в файле «∕etc∕.gitconfig»		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --list — показать значения параметров config файлов всех трёх уровней		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --list --global — показать значения параметров config файла уровня профиля в операционной системе		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 2.1 Основы (продолжение)
+
+
+#<big>2.1 Основы – <a href="https://www.youtube.com/watch?v=hWiqh6YUUS8&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=3&t=310s">Конфигурация</a> (продолжение)</big>
+
+git config --local --unset user.name — удалить параметр 'user.name' config файла на локальном уровне (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --remove-section user — удалить все параметры секции 'user' из config файла на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --global core.editor '/Word.exe' — установить программу 'Word.exe' вызываемым текстовым редактором по умолчанию в config файле на уровне профиля в операционной системе		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --global alias.c 'config --global' — установить алиас 'c' с git-командой 'config --global' в config файле на уровне профиля в операционной системе		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config --system alias.c '!echo "create"; git init' — установить алиас 'c' с командами 'echo "create"' и 'git init' в config файле на уровне всей операционной системы		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config -h — показать справочную информацию из команды 'config' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git help config — показать подробную справочную информацию о команде 'config'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#команды less
+#/ — поиск (по строке или регулярному выражению)
+#n — промотать вперед
+#shift + n — промотать назад
+#q — выход
+
+
+
+PART — 2.2, 2.3 Основы
+
+
+#<big>2.2 Основы – <a href="https://www.youtube.com/watch?v=j2F77U-2FuQ&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=4&t=164s">Создание репозитория, первый коммит</a></big>
+
+#для удаления репозитория Git надо удалить директорию «.git» в корне проекта
+#WorkDirectory -> Index -> Repository
+git status — показать информацию о текущем состоянии проекта относительно репозитория		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add page.html — добавить в Index факт появления или изменения файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit — добавить в Repository новую запись с изменениями из Index		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>2.3 Основы – <a href="https://www.youtube.com/watch?v=KrlYu1ToS-o&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=5&t=11s">Git и права на файлы</a></big>
+
+#755 — файл исполнимый (655 — нет)
+#chmod +x page.html — добавить файлу 'page.html' права на ('+x' — исполнение ('-x' — удалить право), '+r' — чтение '+w' — редактирование)
+git config core.fileMode false — установить игнорирование системой Git прав исполнения файлов по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add --chmod +x page.html — добавить в Index файл 'page.html' с правами на исполнение		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git update-index --chmod +x page.html — добавить в Index право на исполнение для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 2.4 Основы
+
+
+#<big>2.4 Основы – <a href="https://www.youtube.com/watch?v=_qWWtXu07GI&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=6">Git show,  кто такие автор и коммиттер</a></big>
+
+#текущим здесь называется коммит, на который ссылается указатель HEAD
+git show — показать метаданные и изменения, связанные с текущим коммитом (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show HEAD — показать метаданные и изменения, связанные с текущим коммитом (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show ab12 — показать метаданные и изменения, связанные с коммитом с id='ab12'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show master — показать метаданные и изменения, связанные с коммитом, на который ссылается указатель ветки 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show --pretty=fuller — показать метаданные и изменения, связанные с текущим коммитом в формате подробного вывода (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --author 'John <john@mail.com>' — создать коммит, в котором автором будет указан 'John' с почтой 'john@mail.com'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --date '15.03.2015' — создать коммит с датой создания изменений автором '15.03.2015'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 2.5 - 2.7 Основы
+
+
+#<big>2.5 Основы – <a href="https://www.youtube.com/watch?v=xzEMA7rzN3Y&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=7&t=210s">Добавление файлов и директорий, git status</a></big>
+
+git add . — добавить в Index все изменения и неотслеживаемые файлы из текущего каталога		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset .idea — поместить в Index версию файла '.idea' из текущего коммита, тем самым удалив изменения этого файла из Index (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#.gitignore — файл с игнорируемыми путями
+git add --force .idea — добавить в Index файл '.idea' безусловно (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit -m 'fix bug' — создать коммит с комментарием 'fix bug' без вызова текстового редактора (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>2.6 Основы – <a href="https://www.youtube.com/watch?v=WlIzoLK46is&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=8">Хороший коммит</a></big>
+
+
+#<big>2.7 Основы – <a href="https://www.youtube.com/watch?v=75TOiisShWw&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=9">Зачем нужен индекс?</a></big>
+
+git add --patch — добавить в Index все изменения отслеживаемых файлов по порядку с возможностью выбора добавить или нет (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add -p page.html — добавить в Index изменения файла 'page.html' по порядку с возможностью выбора добавить или нет (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 2.8 Основы
+
+
+#<big>2.8 Основы – <a href="https://www.youtube.com/watch?v=UX7O3oekwFA&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=10">Коммиты без git add</a></big>
+
+git commit --all — добавить в Index все изменения отслеживаемых файлов и создать коммит (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit -a — добавить в Index все изменения отслеживаемых файлов и создать коммит (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit .gitignore — добавить в Index изменения отслеживаемого файла '.gitignore' и создать коммит с учетом только этих изменений		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add --all — добавить в Index изменения и неотслеживаемые файлы из всего проекта (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add -A — добавить в Index изменения и неотслеживаемые файлы из всего проекта (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#этих команд нет в курсе
+git add --update — добавить в Index изменения отслеживаемых файлов из всего проекта (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add -u . — добавить в Index все изменения отслеживаемых файлов из текущей директории (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 2.9 Основы
+
+
+#<big>2.9 Основы – <a href="https://www.youtube.com/watch?v=W71P4I0MGr0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=11">Удаление и переименование файлов</a></big>
+
+git config --global core.excludesFile ~/.gitignore — создать файл '.gitignore' на уровне профиля в операционной системе		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add .gitignore — удалить файл '.gitignore' из Index, если он был удален из WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rm script.js — удалить неизмененный файл 'script.js' из Index и WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rm -f script.js — удалить файл 'script.js' из Index и WorkDirectory безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rm -r src — удалить неизмененную директорию 'src' и ее содержимое из Index и WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rm --cached script.js — удалить файл 'script.js' из Index, оставив в WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git mv page.html hello.html — переместить файл 'page.html' на то же место с переименованием на 'hello.html' в Index и WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.1, 3.2 Ветки
+
+
+#<big>3.1 Ветки – <a href="https://www.youtube.com/watch?v=aSohh-m5vJY&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=12">Введение</a></big>
+
+
+#<big>3.2 Ветки – <a href="https://www.youtube.com/watch?v=ydtgQSaUzw0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=13">Создание и переключение</a></big>
+
+git branch — показать список всех веток проекта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch -v — показать список всех веток проекта c информацией о коммитах, на которые ссылаются их указатели (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch feature — создать ветку с названием 'feature' и указателем на текущий коммит (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout feature — изменить указатель HEAD на ветку с названием 'feature' и обновить WorkDirectory в состояние коммита на который ссылается указатель этой ветки		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -b feature — создать ветку с названием 'feature' и указателем на текущий коммит и изменить указатель HEAD на нее		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -b feature ab12 — создать ветку с названием 'feature' и указателем на коммит с id='ab12' и изменить указатель HEAD на нее		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.3 Ветки
+
+
+#<big>3.3 Ветки – <a href="https://www.youtube.com/watch?v=KxKjBneF_NI&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=14">Команда checkout при незакоммиченных изменениях</a></big>
+
+git checkout -f master — изменить указатель HEAD на ветку 'master' безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout --force HEAD — изменить указатель HEAD на текущий коммит безусловно (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -f — изменить указатель HEAD на текущий коммит безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash — поместить все незакоммиченные изменения в архив удалив их из WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash pop — вернуть последнюю запись из архива изменений в WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash apply — копировать последнюю запись из архива изменений в WorkDirectory		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash -m 'some text' — поместить все незакоммиченные изменения в архив удалив их из WorkDirectory c описанием 'some text' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash list — показать список записей из архива изменений		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git stash pop 'stash@{1}' — вернуть предпоследнюю запись из архива изменений в WorkDirectory (вариант для PowerShell)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.4 - 3.7 Ветки
+
+
+#<big>3.4 Ветки – <a href="https://www.youtube.com/watch?v=mlxmxsBzIMs&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=15">Перенос незакоммиченных изменений</a></big>
+
+
+#<big>3.5 Ветки – <a href="https://www.youtube.com/watch?v=6oZG-pAeHRE&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=16">Перенос веток "вручную"</a></big>
+
+git branch -f master ab12 — создать ветку с названием 'master' и указателем на коммит с id='ab12' удалив одноименную ветку при ее наличии (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch -f master fix — создать ветку с названием 'master' и указателем на коммит, на который ссылается указатель ветки 'fix' удалив одноименную ветку при ее наличии (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -B master ab12 — создать ветку с названием 'master' и указателем на коммит с id='ab12' и изменить указатель HEAD на нее, удалив одноименную ветку при ее наличии		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>3.6 Ветки – <a href="https://www.youtube.com/watch?v=g0GgtqlhHaw&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=17&t=28s">Состояние отделённой HEAD</a></big>
+
+git checkout ab12 — изменить указатель HEAD на коммит с id='ab12' При этом возникнет состояние "Detached HEAD"		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick ab12 — создать в текущей ветке копию коммита с id='ab12'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>3.7 Ветки – <a href="https://www.youtube.com/watch?v=3z-LjQacu2Q&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=18">Восстановление предыдущих версий файлов</a></big>
+
+git checkout master script.js — поместить в WorkDirectory и Index версию файла 'script.js' из коммита на который ссылается указатель ветки 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout HEAD page.html — поместить в WorkDirectory и Index версию файла 'page.html' из текущего коммита		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout page.html — поместить в WorkDirectory версию файла 'page.html' из Index		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -- master — поместить в WorkDirectory версию файла 'master' из Index при наличии ветки с названием 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.8 Ветки
+
+
+#<big>3.8 Ветки – <a href="https://www.youtube.com/watch?v=l-sTQBr3rXY&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=19&t=98s">Просмотр истории и старых файлов, символы ~, ^, @, поиск с :∕</a></big>
+
+git log — показать историю коммитов от текущего коммита до первого коммита (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --oneline — показать историю коммитов от текущего коммита до первого коммита в однострочном формате (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log master — показать историю коммитов от того, на который указывает ветка 'master', до первого коммита		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show — показать метаданные и изменения, связанные текущим коммитом (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show master — показать метаданные и изменения, связанные с коммитом, на который указывает ветка 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show --quiet — показать только метаданные связанные с текущим коммитом (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#Предковый коммит — коммит в цепочке линейной истории от данного коммита
+#Родительский коммит — непосредственный родитель данного коммита. У merge коммитов их более одного
+git show HEAD~2 — показать метаданные и изменения, связанные со вторым предковым коммитом от текущего (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#Cлово «HEAD» можно заменить знаком «@», но под оболочкой PowerShell в таком случае надо использовать в кавычки
+git show @~2 — показать метаданные и изменения, связанные со вторым предковым коммитом от текущего (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.8 (продолжение), 3.9, 3.10 Ветки
+
+
+#<big>3.8 Ветки – <a href="https://www.youtube.com/watch?v=l-sTQBr3rXY&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=19&t=98s">Просмотр истории и старых файлов, символы ~, ^, @, поиск с :∕</a> (продолжение)</big>
+
+git show '@~2' — показать метаданные и изменения, связанные со вторым предковым коммитом от текущего (короткий вариант для PowerShell)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show @~3:page.html — показать состояние файла 'page.html' на момент третьего предкового коммита от текущего (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show :page.html — показать состояние файла 'page.html' в Index (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show :/'ask word' — показать метаданные и изменения, связанные с самым новым коммитом со словами 'ask word' в описании без учета веток		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>3.9 Ветки –  <a href="https://www.youtube.com/watch?v=g--N6QHbt6Q&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=20">Слияние веток "перемоткой"</a></big>
+
+git merge fix — добавить в текущую ветку все изменения коммитов ветки 'fix'. Если ветка 'fix' начинается от текущей ветки, то текущая ветка изменяет указатель на коммит, на который ссылается указатель ветки 'fix'. Этот алгоритм слияния называется «fast-forward»		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#Ссылка в файле «.git∕ORIG_HEAD» сохраняет идентификатор коммита, на который ссылался указатель HEAD перед последним вызовом команды 'git reset', 'git checkout', 'git merge' или 'git rebase'
+git branch -f master ORIG_HEAD — изменить указатель ветки 'master' на коммит, на который ссылался указатель HEAD до последнего reset, checkout, merge или rebase безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>3.10 Ветки – <a href="https://www.youtube.com/watch?v=yFVPNYSTlLQ&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=21">Удаление веток</a></big>
+
+#-d -> --delete; -D -> --delete --force
+git branch -d fix — удалить ветку 'fix', если это действие не оставит недостижимых коммитов (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch -D fix — удалить ветку 'fix' безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 3.11 Ветки
+
+
+#<big>3.11 Ветки – <a href="https://www.youtube.com/watch?v=FxyGx_XTRhA&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=22&t=36s">История переключений веток: лог ссылок reflog</a></big>
+
+#.git∕logs∕ — директория reflog
+git log --oneline -g — показать историю изменений указателя HEAD с уточнением порядковых номеров не используя алиас (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#команда 'reflog show' является алиасом для команды 'log --oneline -g', где флаг 'show' используется по умолчанию
+git reflog — показать историю изменений указателя HEAD с уточнением порядковых номеров (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reflog show HEAD — показать историю изменений указателя HEAD с уточнением порядковых номеров (полный вариант) !!!		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch feature HEAD@{3} — создать ветку с названием 'feature' и указателем на коммит, на который ссылался указатель HEAD три изменения назад		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reflog --date iso — показать историю изменений указателя HEAD с уточнением дат в формате 'iso' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch feature HEAD@{'2017-09-12 22:22:22'} — создать ветку с названием 'feature' и указателем на коммит, на который ссылался указатель HEAD в день '2017-09-12' и время '22:22:22'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#Reflog по умолчанию хранит коммиты 90 дней, если они достижимы и 30, если нет
+#Reflog никому не передается, он только в локальной папке проекта
+git checkout @{-2} — изменить указатель HEAD на коммит, с которого в его reflog был предпоследний checkout		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout - — изменить указатель HEAD на коммит, с которого в его reflog был последний checkout (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reflog --no-decorate — показать историю изменений указателя HEAD с уточнением порядковых номеров без информации о ветках (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 4.1 Удаление "лишних" файлов и незакоммиченных изменений
+
+
+#<big>4.1 <a href="https://www.youtube.com/watch?v=h9kYvAQoXjo&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=23">Удаление "лишних" файлов и незакоммиченных изменений</a></big>
+
+git checkout -f — изменить указатель HEAD на текущий коммит безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout -f master script.js — поместить в WorkDirectory и Index версию файла 'script.js' из коммита на который ссылается указатель ветки 'master' безусловно (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git clean -f — удалить неотслеживаемые файлы из директории проекта (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git clean --force — удалить неотслеживаемые файлы из директории проекта (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git clean -df — удалить неотслеживаемые файлы и директории из директории проекта (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git clean -xf — удалить неотслеживаемые и игнорируемые в «.gitignore» файлы из директории проекта (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 5.1, 5.2 Reset
+
+
+#<big>5.1 Reset – <a href="https://www.youtube.com/watch?v=DMncFUqzDuM&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=24">Жесткий reset --hard: отмена изменений, удаление коммитов</a></big>
+
+git reset --hard @~ — изменить указатель текущей ветки на родительский коммит (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset --hard ORIG_HEAD — изменить указатель текущей ветки на коммит, на который ссылался указатель HEAD до последнего reset, checkout, merge или rebase		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset --hard — изменить указатель текущей ветки на текущий коммит (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>5.2 Reset – <a href="https://www.youtube.com/watch?v=bUdLmdSMm7E&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=25">Мягкий reset --soft: замена и объединение коммитов</a></big>
+
+git reset --soft @~ — изменить указатель текущей ветки на родительский коммит сохранив текущее состояние WorkDirectory и Index (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit -c ORIG_HEAD — создать коммит используя описание и имя автора из коммита, на который ссылается указатель 'ORIG_HEAD' с возможностью редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit -C ORIG_HEAD — создать коммит используя описание и имя автора из коммита, на который ссылается указатель 'ORIG_HEAD' без редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit -C ORIG_HEAD --reset-author — создать коммит используя только описание из коммита, на который ссылается указатель 'ORIG_HEAD' без редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 5.3 - 5.5 Reset
+
+
+#<big>5.3 Reset – <a href="https://www.youtube.com/watch?v=Hho9WBgWil0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=26">Правка последнего коммита: commit --amend</a></big>
+
+git commit --amend — создать коммит и заменить им предыдущий используя его описание и имя автора с возможностью редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --amend --no-edit — создать коммит и заменить им предыдущий используя его описание и имя автора без редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --amend --reset-author — создать коммит и заменить им предыдущий используя только его описание с возможностью редактирования		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --amend -m 'new commit' — создать коммит и заменить им предыдущий с описанием 'new commit' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>5.4 Reset – <a href="https://www.youtube.com/watch?v=r1oUTfqKXac&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=27">Смешанный reset (без флагов), сравнение видов reset</a></big>
+
+git reset --mixed HEAD~2 — изменить указатель текущей ветки на второй предковый коммит сохранив текущее состояние WorkDirectory (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset — изменить указатель текущей ветки на текущий коммит сохранив текущее состояние WorkDirectory (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset script.js — поместить в Index версию файла 'script.js' из текущего коммита (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset ab12 script.js — поместить в Index версию файла 'script.js' из коммита с id='ab12' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout ab12 script.js — поместить в WorkDirectory и Index версию файла 'script.js' из коммита id='ab12'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>5.5 Reset – <a href="https://www.youtube.com/watch?v=hb-x1SJB43s&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=28">Таблица с действиями reset</a></big>
+
+git help reset — показать таблицу с действиями reset в разных случаях с разными флагами и другую справочную информацию о команде 'reset'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.1 Просмотр
+
+
+#<big>6.1 Просмотр – <a href="https://www.youtube.com/watch?v=1oExHLJXBIg&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=29&t=2s">Сравнение коммитов, веток и не только: git diff</a></big>
+
+#(у diff точки особенные по значению, у всех остальных как в log(они будут изучены позже))
+git diff master feature — показать разницу между коммитами на которые ссылаются указатели веток 'master' и 'feature' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff master..feature — показать разницу между коммитами на которые ссылаются указатели веток 'master' и 'feature' (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff master...feature — показать разницу между коммитом на который ссылается указатель ветки 'feature' и последним общим коммитом веток 'master' и 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff — показать разницу между WorkDirectory и Index без учета неотслеживаемых файлов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff HEAD — показать разницу между WorkDirectory и Repository без учета неотслеживаемых файлов (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff --cached — показать разницу между Index и Repository текущего коммита (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.1 Просмотр (продолжение)
+
+
+#<big>6.1 Просмотр – <a href="https://www.youtube.com/watch?v=1oExHLJXBIg&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=29&t=2s">Сравнение коммитов, веток и не только: git diff</a> (продолжение)</big>
+
+git commit -v — показать разницу между Index и Repository в редакторе при создании коммита. При этом в описание diff не войдет		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config commit.verbose true — установить отображение в текстовом редакторе разницы между Index и Repository по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff page.html — показать разницу между WorkDirectory и Index только для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff --name-only master feature — показать список общих файлов для коммитов на которые указывают ветки 'master' и 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff master:one.py feature:two.py — показать разницу между файлом 'one.py' из коммита, на который ссылается указатель ветки 'master' и файлом 'two.py' из коммита, на который ссылается указатель ветки 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff --no-index one.java two.java — показать разницу между файлом 'one.py' и файлом 'two.py' без указания их принадлежности к репозиторию		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.2 Просмотр
+
+
+#<big>6.2 Просмотр – <a href="https://www.youtube.com/watch?v=Oim9dbpbCMc&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=30">Вывод истории: git log, форматирование коммитов</a></big>
+
+git log — показать все коммиты достижимые из текущего коммита		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --pretty=oneline — показать все коммиты достижимые из текущего коммита каждый в одну строку		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --abbrev-commit — показать все коммиты достижимые из текущего коммита с сокращенным id		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --oneline — показать все коммиты достижимые из текущего коммита каждый в одну строку с сокращенным id (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --pretty=format:'%C(#667788)%h, %cd, %s, %d, %an — показать все коммиты достижимые из текущего коммита каждый в одну строку цветом RGB '#667788' в формате: сокращенный id коммита, дата коммитера, декорирование, имя автора		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config pretty.my format:'%h' — добавить формат показа коммитов с именем 'my', показывающий только сокращенный id коммита в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config format.pretty my — установить формат с именем 'my' для pretty по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config log.date short — установить формат даты 'short' по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --patch — показать все коммиты достижимые из текущего коммита с разницей каждого от предыдущего (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.3 Просмотр
+
+
+#<big>6.3 Просмотр – <a href="https://www.youtube.com/watch?v=nRYSu3wbNXo&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=31">Диапазоны коммитов для git log и не только</a></big>
+
+git log — показать все коммиты достижимые из текущего коммита (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log master feature — показать все коммиты достижимые из коммитов на которые ссылаются указатели веток 'master' и 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --all — показать все коммиты текущего репозитория		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --graph HEAD ab12 — показать все коммиты достижимые из текущего коммита и коммита с id='ab12' в виде графа		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log feature ^master — показать коммиты принадлежащие ветке 'feature', но не принадлежащих ветке 'master' (вариант без точек)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log master..feature — показать коммиты принадлежащие ветке 'feature', но не принадлежащих ветке 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log ..feature --boundary — показать коммиты принадлежащие ветке 'feature', кроме достижимых из текущего коммита и показать их последний общий коммит		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log master...feature — показать коммиты принадлежащие веткам 'feature' и 'master', кроме их общих коммитов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git help revisions — показать способы задания диапазонов просмотра		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.4 Просмотр
+
+
+#<big>6.4 Просмотр – <a href="https://www.youtube.com/watch?v=7A68GxROZ2I&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=32">Вывод git log коммитов, меняющих нужный файл</a></big>
+
+git log HEAD page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log -p page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' с уточнением внесенных изменений в этот файл (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --follow page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' включая изменение имени файла (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log feature..master page.html — показать коммиты принадлежащие ветке 'master', но не принадлежащие ветке 'feature' в которых менялся файл 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.5 Просмотр
+
+
+#<big>6.5 Просмотр – <a href="https://www.youtube.com/watch?v=lhrchh5dqH0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=33&t=273s">Поиск в истории, фильтры для git log</a></big>
+
+git log --grep 'ask run' — показать все коммиты достижимые из текущего коммита в описании которых есть фраза 'ask run' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep 'ask run' feature — показать все коммиты принадлежащие ветке 'feature' в описании которых есть фраза 'ask run'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep say --grep hi — показать все коммиты достижимые из текущего коммита в описании которых есть слово 'say' или 'hi' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep say --grep hi --all-mach — показать все коммиты достижимые из текущего коммита в описании которых есть слова 'say' и 'hi' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep 'say(Hi|By)' -P — показать все коммиты достижимые из текущего коммита в описании которых есть слово начинающиеся на 'say' и продолжающиеся "Hi" или 'By' в perl-совместимом режиме чтения регулярных выражений		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config grep.patternType perl — установить perl-совместимый режим чтения регулярных выражений по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep 'say(Hi|By)' -F — показать все коммиты достижимые из текущего коммита в описании которых есть слово 'say(Hi|By)'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --grep 'say hi' -i — показать все коммиты достижимые из текущего коммита в описании которых есть фраза 'say hi' независимо от регистра		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log -G'sayHi\(' -p — показать все коммиты достижимые из текущего коммита в изменениях которых есть слово 'sayHi('		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 6.5 (продолжение), 6.6 Просмотр
+
+
+#<big>6.5 Просмотр – <a href="https://www.youtube.com/watch?v=lhrchh5dqH0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=33&t=273s">Поиск в истории, фильтры для git log</a> (продолжение)</big>
+
+git log -L 2,8:page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' в строках со второй по восьмую (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log -L '/<head>/':'/<\/head>/' page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' от строки со словом '<head>' по строку словом '</head>' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log -L '/^a/':'/^b/' page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' от строки начинающейся с буквы 'a' по строку начинающейся с буквы 'b' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#этой команды нет в заданиях в виду трудностей ее применения на практике
+#git log -L :funcName:page.html — показать коммиты достижимые из текущего коммита в которых менялся файл 'page.html' в функции 'funcName' (короткий вариант)
+git log HEAD --author='Ilia' — показать коммиты достижимые из текущего коммита в котором в имени автора есть слово 'Ilia' (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log feature --commiter=Ilia — показать коммиты достижимые из коммита на который указывает ветка 'feature' в котором в имени коммитера есть слово 'Ilia'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --before '2017-09-13' — показать коммиты достижимые из текущего коммита до даты '2017-09-13' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --after '2017-09-13' — показать коммиты достижимые из текущего коммита после даты '2017-09-13' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>6.6 Просмотр – <a href="https://www.youtube.com/watch?v=o9du71FpLLM&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=34">Кто написал эту строку? git blame</a></big>
+
+git blame page.html — показать построчно все изменения файла 'page.html' достижимые из текущего коммита с информацией о последнем коммите, который эти изменения внес (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git blame page.html -L 5,8 — показать построчно изменения файла 'page.html' достижимые из текущего коммита с пятой по восьмую строки с информацией о последнем коммите, который эти изменения внес (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git blame page.html --date=short — показать построчно все изменения файла 'page.html' достижимые из текущего коммита с информацией о последнем коммите, который эти изменения внес с датой в коротком формате (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 7.1 Слияние
+
+
+#<big>7.1 Слияние – <a href="https://www.youtube.com/watch?v=PXK1hIifpWU&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=35">"Истинное" слияние и разрешение конфликтов в git merge</a></big>
+
+git merge feature — создать коммит, объединяющий в себе изменения коммитов принадлежащих текущей ветке и ветке 'feature' до последнего их общего коммита, тем самым создав коммит слияния текущей ветки и ветки 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git merge-base HEAD feature — показать id последнего общего коммита для текущего коммита и коммита на который указывает ветка 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+#base(до разделения) + ours(на текущей ветке) + theirs(на сливаемой ветке) = merge
+git checkout --ours page.html — поместить в WorkDirectory изменения текущей ветки во время решения конфликта для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout --theirs page.html — поместить в WorkDirectory изменения сливаемой ветки во время решения конфликта для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git checkout --merge page.html — поместить в WorkDirectory конфликтующие изменения во время решения конфликта для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git merge --abort — отменить все изменения связанные с созданием коммита слияния во время конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 7.1 Слияние (продолжение)
+
+
+#<big>7.1 Слияние – <a href="https://www.youtube.com/watch?v=PXK1hIifpWU&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=35">"Истинное" слияние и разрешение конфликтов в git merge</a> (продолжение)</big>
+
+#git reset --merge — аналогичен команде 'git merge --abort', но имеет более широкое применение
+git checkout --conflict=diff3 --merge page.html — поместить в WorkDirectory конфликтующие изменения и их базовую версию во время решения конфликта для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config merge.conflictStyle=diff3 — установить добавление базовой версии к конфликтующим изменениям во время решения конфликта по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git show :1:page.html — показать базовый вариант состояния файла 'page.html' в Index во время решения конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git add page.html — завершить процесс решения конфликта для файла 'page.html'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git merge --continue — продолжить создание коммита слияния после решения конфликтов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 7.2 Слияние
+
+
+#<big>7.2 Слияние – <a href="https://www.youtube.com/watch?v=EJKw_qW5pgI&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=36">Коммит слияния, дальнейшие слияния</a></big>
+
+git show --first-parent — показать метаданные и изменения, связанные с текущим коммитом слияния, относительно первого родителя (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff HEAD HEAD^1 — показать отличия текущего коммита слияния от его первого родителя (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git diff HEAD^2 — показать отличия текущего коммита слияния от его второго родителя (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch --merged — показать список веток объединенных с текущей		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git branch --no-merged — показать список веток не объединенных с текущей		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git merge feature --log — создать коммит слияния текущей ветки с веткой 'feature' c указанием вносимых изменений в описании коммита		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git log --first-parent — показать коммиты достижимые из текущего только по первым родителям		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 7.3 - 7.6 Слияние
+
+
+#<big>7.3 Слияние – <a href="https://www.youtube.com/watch?v=TEsjp1eDLx4&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=37">Отмена слияния</a></big>
+
+
+#<big>7.4 Слияние – <a href="https://www.youtube.com/watch?v=h4jxghOE9e0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=38">Семантические конфликты и их разрешение</a></big>
+
+git merge feature --no-commit — создать коммит слияния текущей ветки с веткой 'feature' остановившись перед завершением его создания даже при отсутствии конфликтов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>7.5 Слияние – <a href="https://www.youtube.com/watch?v=AHjS9MWsNm0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=39">Полезный приём: сохранение веток с флагом --no-ff</a></big>
+
+git merge feature --no-ff — создать коммит слияния текущей ветки с веткой 'feature' алгоритмом полноценного слияния принудительно		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config merge.ff false — установить алгоритм полноценного слияния по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config branch.master.mergeoptions '--no-ff' — установить алгоритм полноценного слияния для ветки 'master' по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git merge --ff feature — создать коммит слияния текущей ветки с веткой 'feature' алгоритмом перемотка явно		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>7.6 Слияние – <a href="https://www.youtube.com/watch?v=1v-dxpobjlY&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=40">Создание коммита из ветки: merge --squash</a></big>
+
+git merge --squash feature — создать коммит с добавлением изменений из ветки 'feature' без указания второго родителя		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset --merge — отменить создание коммита во время решения конфликтов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 8.1 Копирование коммитов
+
+
+#<big>8.1 Копирование коммитов – <a href="https://www.youtube.com/watch?v=TZJxBSfR0NE&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=41">Копирование коммитов: cherry-pick</a></big>
+
+git cherry-pick ab12 — создать в текущей ветке копию коммита с id='ab12'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick -x ab12 — создать в текущей ветке копию коммита с id='ab12' с информацией об оригинальном коммите в описании		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick master..feature — создать в текущей ветке копии всех коммитов ветки 'feature' после ответвления от ветки 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick --abort — отменить все изменения связанные с созданием в текущей ветке копии коммита во время конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick --continue — продолжить создание копий коммитов после решения конфликтов		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick --quit — отменить создание новых копий коммитов во время конфликта оставив уже созданные		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick --no-commit ab12 — поместить в WorkDirectory и Index изменения из коммита с id='ab12' (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick -n ab12 — поместить в WorkDirectory и Index изменения из коммита с id='ab12' (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 9.1 Перемещение коммитов
+
+
+#<big>9.1 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=jxwPgfmutjs&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=42">Перебазирование вместо слияния: rebase</a></big>
+
+git rebase master — создать копию текущей ветки на базе коммита на который ссылается указатель ветки 'master' и изменить указатель текущей ветки на вершину копии ветки, тем самым переместив текщую ветку на ветку 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --abort — отменить все изменения связанные с перемещением ветки во время конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --quit — отменить будущие изменения связанные с перемещением ветки во время конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --skip — отменить изменения связанные с копируемым коммитом во время конфликта перемещения ветки		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --continue — продолжить перемещение ветки после решения конфликта		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset --hard ORIG_HEAD — отменить перемещение текущей ветки после его завершения		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git reset --hard feature@{1} — отменить перемещение ветки 'feature' после его завершения		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase master feature — переместить ветку 'feature' на ветку 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 9.2 - 9.5 Перемещение коммитов
+
+
+#<big>9.2 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=Z3Q2RaEUQO0&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=43">Rebase и merge: сравнение подходов</a></big>
+
+
+#<big>9.3 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=dnT8YzpqEYA&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=44">Rebase с тестами, флаг -x</a></big>
+
+#Команда 'git rebase --exec' приостанавливает процесс перемещения ветки при возвращении выполняемой командой результата отличного от нуля
+git rebase --exec 'make test' master — переместить текущую ветку на ветку 'master' с выполнением в консоли команды 'make test' после каждого перемещенного коммита (полный вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase -x 'make test' master — переместить текущую ветку на ветку 'master' с выполнением в консоли команды 'make test' после каждого перемещенного коммита (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>9.4 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=t_sPfT8m0s8&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=45">Перенос части ветки, rebase --onto</a></big>
+
+git rebase --onto master feature — переместить текущую ветку на ветку 'master' начиная от коммита на который ссылается указатель ветки 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --onto master feature fix — переместить ветку 'fix' на ветку 'master' начиная от коммита на который ссылается указатель ветки 'feature'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git cherry-pick master~2..master — создать в текущей ветке копии двух последних коммитов ветки 'master'		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>9.5 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=P89rsHliIpM&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=46">Перебазирование слияний, --rebase-merges</a></big>
+
+git rebase --rebase-merges master — переместить текущую ветку на ветку 'master' с сохранением коммитов слияния		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 9.7 - 9.7 Перемещение коммитов
+
+
+#<big>9.6 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=4K9X1Aa1nvA&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=47">Интерактивное перебазирование, rebase -i</a></big>
+
+git rebase -i master — переместить текущую ветку на ветку 'master' с возможностью редактирования списка действий над копируемыми коммитами ветки (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config rebaseMissingCommitsCheck warn — установить предупреждение при отсутствии строки коммита в списке действий во время перемещения ветки по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config rebaseMissingCommitsCheck error — установить ошибку при отсутствии строки коммита в списке действий во время перемещения ветки по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase --edit-todo — редактировать список дальнейших действий над копируемыми коммитами во время паузы при перемещении ветки		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>9.7 Перемещение коммитов – <a href="https://www.youtube.com/watch?v=exYHemsk1V8&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=48">Исправляем коммит посередине ветки: autosquash</a></big>
+
+git commit --fixup=@~1 — создать коммит который при перемещении текущей ветки с разрешением на автоматическое редактирование списка действий добавит свои изменения в родительский коммит без возможности редактирования его описания		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git commit --squash=@~1 — создать коммит который при перемещении текущей ветки с разрешением на автоматическое редактирование списка действий добавит свои изменения в родительский коммит с возможностью редактирования его описания		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase -i --autosquash master — переместить текущую ветку на ветку 'master' с разрешением на автоматическое редактирование списка действий		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git config rebase.autosquash true — установить разрешение на автоматическое редактирование списка действий по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+
+PART — 10.1 - 10.3 Отмена коммитов через revert
+
+
+#<big>10.1 Отмена коммитов через revert – <a href="https://www.youtube.com/watch?v=FcwQrN9XOwU&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=49&t=4s">Обратные коммиты, revert</a></big>
+
+git revert @ — создать в текущей ветке копию текущего коммита заменив его изменения на обратные (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git revert @~2..@ — создать в текущей ветке копию последних двух коммитов от текущего заменив их изменения на обратные (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>10.2 Отмена коммитов через revert – <a href="https://www.youtube.com/watch?v=aRbOsagYs8w&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=50&t=1s">Отмена слияния через revert</a></big>
+
+git revert @ -m 1 — создать в текущей ветке копию текущего коммита слияния заменив его изменения на обратные первому родителю		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+
+
+#<big>10.3 Отмена коммитов через revert – <a href="https://www.youtube.com/watch?v=3HDSLArx3qw&list=PLDyvV36pndZFHXjXuwA_NywNrVQO0aQqb&index=51">Повторное слияние с rebase</a></big>
+
+git config rerere.enabled true — установить включенным механизм запоминания решения конфликтов по умолчанию в config файле на локальном уровне (короткий вариант)		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rerere-train.sh --all — записать в память механизма запоминания решения конфликтов все предыдущие решения		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
+git rebase master --no-ff — переместить текущую ветку на ветку 'master' принудительно		<!--BUTTON{-,.,',@,~,{,\},HEAD}  PREFILL{git }-->
