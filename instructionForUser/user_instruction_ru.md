@@ -44,3 +44,82 @@
     - Желтая дуга — визуализация лучшего результата прохождения колоды.
     При достижении лучшего результата 100% меняет цвет на зеленый навсегда.<br>
     ![](resources/activity1/progress_bar_complete.png)
+ 
+
+<br>
+<br>
+
+
+# Раздел 2: Практическая страница приложения
+<img src="resources/activity2/ru/full.png" width="350">
+
+<br>
+
+## 1. Панель инструментов:
+<img src="resources/activity2/ru/app_bar.png" width="350"><br>
+1. Счет заданий<br> 
+   ![](resources/activity2/ru/quest_count.png)
+   - Количество пройденных заданий <br>
+     ![](resources/activity2/ru/quest_number.png)
+   - Количество заданий в колоде <br>
+     ![](resources/activity2/all_quests.png)
+2. Автоматические предложения клавиатуры:
+   - Включенное состояние оставляет клавиатуру в привычном виде <br>
+   ![](resources/activity2/suggestions_on_button.png)
+   - Выключенное состояние выключает автоматические предложения клавиатуры, переводя ее в режим ввода пароля <br>
+      ![](resources/activity2/suggestions_off_button.png)
+   - Состояние меняется путем нажатия на иконку.
+3. Подтверждение демонстрации ответа
+   - Включенное состояние вызывает всплывающее окно подтверждения демонстрации ответа после нажатия на кнопку "Показать ответ" <br>
+   ![](resources/activity2/warning_show_answer_on_button.png)
+   - Выключенное состояние игнорирует всплывающее окно подтверждения демонстрации ответа, показывая ответ сразу после  нажатия на кнопку "Показать ответ" <br>
+   ![](resources/activity2/warning_show_answer_off_button.png) <br>
+   - Состояние меняется путем нажатия на иконку.
+4. Изучать <br>
+   ![](resources/activity2/study_button.png)
+   - Переход на "Теоретическую страницу"
+   - Смотри раздел "Теоретическая страница" <br>
+
+
+## 2. Поле вопроса: <br>
+![](resources/activity2/ru/quest_field.png)
+   - Описание задания для выполнения.
+   - Может содержать ссылки на дополнительные материалы
+<br>
+
+## 3. Поле ответа: <br>
+<img src="resources/activity2/ru/answer_field.png" width="350"> <br>
+
+- Каждое введенное в процессе внесения ответа слово проверяется по отдельности
+- Слово, введенное неправильно (в том числе не до конца), выделяется серым цветом
+  <img src="resources/activity2/ru/half_word_answer.png" width="350"> <br>
+- Слово, введенное правильно, выделяется цветом панели инструментов
+  <img src="resources/activity2/ru/right_word_answer.png" width="350"> <br>
+- Окно ответа различает знаки по регистру
+  <img src="resources/activity2/ru/wrong_case_word_answer.png" width="350"> <br>
+- Знак ' считается отдельным словом вне зависимости от наличия и количества пробелов между соседними символами
+  <img src="resources/activity2/ru/char_word_answer.png" width="350"> <br>
+- Полностью правильный ответ выделяется зеленым цветом и блокирует поле ввода
+  <img src="resources/activity2/ru/right_answer.png" width="350"> <br>
+- Слова ответа принимаются правильными вне зависимости от количества пробелов между ними
+  <img src="resources/activity2/ru/long_right_answer.png" width="350"> <br>
+- Слова ответа принимаются правильными только по порядку
+  <img src="resources/activity2/ru/wrong_start_answer.png" width="350"> <br>
+<br>
+
+## 4. Кнопка 'Показать ответ'
+<img src="resources/activity2/ru/show_answer_button.png" width="350"> <br>
+
+- Показывает правильный ответ. При этом вопрос не засчитывается отвеченным. Ответ по-прежнему должен быть вписан в соответствующее поле.
+- Если внесен правильный ответ, кнопка меняет текст на 'Далее' и служит для перехода к следующему вопросу.
+  <img src="resources/activity2/ru/next_button.png" width="350"> <br>
+- Если вопрос был последним, кнопка меняет текст на 'Завершить' и служит для возвращения на главную страницу
+  <img src="resources/activity2/ru/complete_button.png" width="350"> <br>
+
+## 5. Вспомогательные кнопки
+![](resources/activity2/ru/help_buttons.png) <br>
+
+- Вспомогательная кнопка вставляет текст, который на ней написан, в поле ввода ответа.
+![](resources/activity2/ru/help_buttons_action.png)
+- Вспомогательные кнопки могут быть или не быть в зависимости от оформления карточки.
+<br>
